@@ -3,30 +3,82 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="SteelRidge Roofing — Nairobi's trusted roofing experts. New installations, repairs, waterproofing & more. Licensed, insured, on time. Get a free quote!"/>
+  <meta name="keywords" content="roofing Nairobi, mabati installation, roof repair Kenya, waterproofing Nairobi, roofing contractors"/>
+  <meta name="author" content="SteelRidge Roofing"/>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="SteelRidge Roofing | Nairobi's Trusted Roofing Experts"/>
+  <meta property="og:description" content="From mabati installation to flat roof waterproofing — quality roofing across Nairobi, Kiambu & beyond. Licensed. Insured. On time."/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://steelridgeroofing.co.ke"/>
+  <meta property="og:image" content="https://images.unsplash.com/photo-1632207691143-643e2a9a9361?w=1200&q=80"/>
+
   <title>SteelRidge Roofing | Nairobi's Trusted Roofing Experts</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='12' fill='%231C2B3A'/%3E%3Cpath d='M50 20L80 50H65V75H35V50H20Z' fill='%23C0392B'/%3E%3C/svg%3E"/>
+
+  <!-- Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --red:     #C0392B;
-      --dark:    #111111;
-      --steel:   #1C2B3A;
-      --mid:     #2E4057;
-      --warm:    #F5F0EB;
-      --white:   #FFFFFF;
-      --gray:    #6B7280;
-      --light:   #E8E2DA;
+      --red:        #C0392B;
+      --red-hover:  #a93226;
+      --red-light:  rgba(192,57,43,0.1);
+      --dark:       #111111;
+      --steel:      #1C2B3A;
+      --mid:        #2E4057;
+      --warm:       #F5F0EB;
+      --white:      #FFFFFF;
+      --gray:       #6B7280;
+      --light:      #E8E2DA;
+      --success:    #27AE60;
+      --error:      #E74C3C;
+
+      --nav-height: 64px;
+      --transition: 0.25s ease;
+      --shadow-sm:  0 1px 3px rgba(0,0,0,0.08);
+      --shadow-md:  0 4px 12px rgba(0,0,0,0.12);
+      --shadow-lg:  0 8px 30px rgba(0,0,0,0.18);
+      --radius:     2px;
     }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: var(--nav-height);
+    }
 
     body {
       font-family: 'Inter', sans-serif;
       background: var(--warm);
       color: var(--dark);
       overflow-x: hidden;
+      line-height: 1.6;
     }
+
+    body.menu-open { overflow: hidden; }
+
+    /* ── SKIP LINK ── */
+    .skip-link {
+      position: absolute;
+      top: -100%;
+      left: 1rem;
+      background: var(--red);
+      color: var(--white);
+      padding: 0.75rem 1.5rem;
+      z-index: 999;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: var(--radius);
+    }
+
+    .skip-link:focus { top: 1rem; }
 
     /* ── NAV ── */
     nav {
@@ -37,8 +89,14 @@
       align-items: center;
       justify-content: space-between;
       padding: 0 5%;
-      height: 64px;
+      height: var(--nav-height);
       background: var(--steel);
+      transition: background var(--transition), box-shadow var(--transition);
+    }
+
+    nav.scrolled {
+      background: rgba(28,43,58,0.97);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.3);
     }
 
     .nav-logo {
@@ -48,6 +106,7 @@
       color: var(--white);
       letter-spacing: 0.04em;
       text-transform: uppercase;
+      text-decoration: none;
     }
 
     .nav-logo span { color: var(--red); }
@@ -56,6 +115,7 @@
       display: flex;
       gap: 2rem;
       list-style: none;
+      align-items: center;
     }
 
     .nav-links a {
@@ -65,19 +125,119 @@
       font-weight: 500;
       letter-spacing: 0.05em;
       text-transform: uppercase;
-      transition: color 0.2s;
+      transition: color var(--transition);
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--red);
+      transition: width var(--transition);
     }
 
     .nav-links a:hover { color: var(--red); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-links a.active { color: var(--red); }
+    .nav-links a.active::after { width: 100%; }
 
     .nav-cta {
       background: var(--red);
       color: var(--white) !important;
       padding: 0.5rem 1.2rem;
-      border-radius: 2px;
+      border-radius: var(--radius);
     }
 
-    .nav-cta:hover { background: #a93226; color: var(--white) !important; }
+    .nav-cta::after { display: none !important; }
+    .nav-cta:hover { background: var(--red-hover); color: var(--white) !important; }
+
+    /* ── HAMBURGER ── */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      z-index: 110;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 26px;
+      height: 2.5px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+      transform-origin: center;
+    }
+
+    .hamburger.active span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+    .hamburger.active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.active span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+
+    /* ── MOBILE MENU ── */
+    .mobile-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 99;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .mobile-overlay.active { opacity: 1; visibility: visible; }
+
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 280px;
+      height: 100%;
+      background: var(--steel);
+      z-index: 105;
+      transform: translateX(100%);
+      transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      padding: 5rem 2rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .mobile-menu.active { transform: translateX(0); }
+
+    .mobile-menu a {
+      color: var(--light);
+      text-decoration: none;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 0.8rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      transition: color var(--transition), padding-left var(--transition);
+    }
+
+    .mobile-menu a:hover { color: var(--red); padding-left: 0.5rem; }
+
+    .mobile-menu .mobile-cta {
+      background: var(--red);
+      color: var(--white) !important;
+      text-align: center;
+      padding: 0.9rem;
+      border-radius: var(--radius);
+      margin-top: 1rem;
+      border-bottom: none;
+    }
+
+    .mobile-menu .mobile-cta:hover { background: var(--red-hover); padding-left: 0; }
 
     /* ── HERO ── */
     .hero {
@@ -89,7 +249,7 @@
       flex-direction: column;
       justify-content: center;
       padding: 0 5%;
-      padding-top: 64px;
+      padding-top: var(--nav-height);
     }
 
     .hero-eyebrow {
@@ -113,10 +273,7 @@
       margin-bottom: 1.5rem;
     }
 
-    .hero h1 em {
-      font-style: normal;
-      color: var(--red);
-    }
+    .hero h1 em { font-style: normal; color: var(--red); }
 
     .hero p {
       color: #D1C9BF;
@@ -134,16 +291,18 @@
       padding: 0.9rem 2rem;
       font-weight: 600;
       font-size: 0.95rem;
+      font-family: 'Inter', sans-serif;
       border: none;
-      border-radius: 2px;
+      border-radius: var(--radius);
       cursor: pointer;
       text-decoration: none;
       display: inline-block;
       letter-spacing: 0.03em;
-      transition: background 0.2s;
+      transition: background var(--transition), transform var(--transition);
     }
 
-    .btn-primary:hover { background: #a93226; }
+    .btn-primary:hover { background: var(--red-hover); transform: translateY(-1px); }
+    .btn-primary:active { transform: translateY(0); }
 
     .btn-outline {
       background: transparent;
@@ -151,16 +310,17 @@
       padding: 0.9rem 2rem;
       font-weight: 600;
       font-size: 0.95rem;
+      font-family: 'Inter', sans-serif;
       border: 2px solid rgba(255,255,255,0.4);
-      border-radius: 2px;
+      border-radius: var(--radius);
       cursor: pointer;
       text-decoration: none;
       display: inline-block;
       letter-spacing: 0.03em;
-      transition: border-color 0.2s;
+      transition: border-color var(--transition), background var(--transition);
     }
 
-    .btn-outline:hover { border-color: var(--white); }
+    .btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,0.05); }
 
     /* ── STATS STRIP ── */
     .stats-strip {
@@ -227,6 +387,24 @@
       margin-bottom: 3rem;
     }
 
+    /* ── SCROLL ANIMATION ── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .fade-in:nth-child(2) { transition-delay: 0.1s; }
+    .fade-in:nth-child(3) { transition-delay: 0.2s; }
+    .fade-in:nth-child(4) { transition-delay: 0.3s; }
+    .fade-in:nth-child(5) { transition-delay: 0.4s; }
+    .fade-in:nth-child(6) { transition-delay: 0.5s; }
+
     /* ── SERVICES ── */
     .services { background: var(--warm); }
 
@@ -241,7 +419,7 @@
     .service-card {
       background: var(--white);
       padding: 2.5rem 2rem;
-      transition: background 0.2s;
+      transition: background var(--transition);
     }
 
     .service-card:hover { background: var(--steel); }
@@ -250,10 +428,21 @@
     .service-card:hover .service-icon { color: var(--red); }
 
     .service-icon {
-      font-size: 2rem;
-      color: var(--red);
+      width: 40px;
+      height: 40px;
       margin-bottom: 1rem;
-      transition: color 0.2s;
+      color: var(--red);
+      transition: color var(--transition);
+    }
+
+    .service-icon svg {
+      width: 100%;
+      height: 100%;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
     }
 
     .service-title {
@@ -263,14 +452,14 @@
       text-transform: uppercase;
       color: var(--steel);
       margin-bottom: 0.6rem;
-      transition: color 0.2s;
+      transition: color var(--transition);
     }
 
     .service-desc {
       font-size: 0.9rem;
       color: var(--gray);
       line-height: 1.7;
-      transition: color 0.2s;
+      transition: color var(--transition);
     }
 
     /* ── WHY US ── */
@@ -316,7 +505,7 @@
     .project-card {
       position: relative;
       overflow: hidden;
-      border-radius: 2px;
+      border-radius: var(--radius);
       aspect-ratio: 4/3;
     }
 
@@ -369,7 +558,7 @@
     .testi-card {
       background: var(--white);
       padding: 2rem;
-      border-radius: 2px;
+      border-radius: var(--radius);
       border-top: 3px solid var(--red);
     }
 
@@ -425,12 +614,19 @@
       padding: 0.9rem 2rem;
       font-weight: 700;
       font-size: 0.95rem;
+      font-family: 'Inter', sans-serif;
       border: none;
-      border-radius: 2px;
+      border-radius: var(--radius);
       cursor: pointer;
       text-decoration: none;
       display: inline-block;
       white-space: nowrap;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+
+    .btn-white:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
     }
 
     /* ── CONTACT ── */
@@ -460,10 +656,17 @@
     }
 
     .contact-item-icon {
-      font-size: 1.2rem;
-      color: var(--red);
-      margin-top: 2px;
+      width: 22px;
+      height: 22px;
       flex-shrink: 0;
+      margin-top: 2px;
+      color: var(--red);
+    }
+
+    .contact-item-icon svg {
+      width: 100%;
+      height: 100%;
+      fill: currentColor;
     }
 
     .contact-item-text strong {
@@ -500,20 +703,39 @@
     .form-group textarea {
       padding: 0.75rem 1rem;
       border: 1.5px solid var(--light);
-      border-radius: 2px;
+      border-radius: var(--radius);
       font-family: 'Inter', sans-serif;
       font-size: 0.9rem;
       color: var(--dark);
       background: var(--white);
       outline: none;
-      transition: border-color 0.2s;
+      transition: border-color var(--transition), box-shadow var(--transition);
     }
 
     .form-group input:focus,
     .form-group select:focus,
-    .form-group textarea:focus { border-color: var(--red); }
+    .form-group textarea:focus {
+      border-color: var(--red);
+      box-shadow: 0 0 0 3px var(--red-light);
+    }
+
+    .form-group input.error,
+    .form-group select.error {
+      border-color: var(--error);
+      box-shadow: 0 0 0 3px rgba(231,76,60,0.1);
+    }
+
+    .form-group .error-msg {
+      font-size: 0.75rem;
+      color: var(--error);
+      display: none;
+    }
+
+    .form-group .error-msg.show { display: block; }
 
     .form-group textarea { resize: vertical; min-height: 120px; }
+
+    .form-submit { width: 100%; padding: 1rem; }
 
     /* ── FOOTER ── */
     footer {
@@ -554,7 +776,7 @@
       color: #6B7280;
       text-decoration: none;
       font-size: 0.85rem;
-      transition: color 0.2s;
+      transition: color var(--transition);
     }
 
     .footer-links a:hover { color: var(--white); }
@@ -572,6 +794,7 @@
       color: #4B5563;
     }
 
+    /* ── WHATSAPP FLOAT ── */
     .whatsapp-float {
       position: fixed;
       bottom: 1.5rem;
@@ -584,281 +807,400 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.6rem;
       text-decoration: none;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.25);
-      z-index: 200;
-      transition: transform 0.2s;
+      box-shadow: var(--shadow-lg);
+      z-index: 90;
+      transition: transform var(--transition);
     }
 
     .whatsapp-float:hover { transform: scale(1.1); }
 
+    .whatsapp-float svg {
+      width: 28px;
+      height: 28px;
+      fill: white;
+    }
+
+    /* ── BACK TO TOP ── */
+    .back-to-top {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 5.5rem;
+      background: var(--steel);
+      color: var(--white);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      box-shadow: var(--shadow-md);
+      z-index: 90;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px);
+      transition: opacity 0.3s, visibility 0.3s, transform 0.3s, background var(--transition);
+    }
+
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .back-to-top:hover { background: var(--red); }
+
+    .back-to-top svg {
+      width: 20px;
+      height: 20px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
       .nav-links { display: none; }
+      .hamburger { display: flex; }
       .stats-strip { grid-template-columns: repeat(2, 1fr); }
       .contact-wrap { grid-template-columns: 1fr; gap: 2rem; }
       .form-row { grid-template-columns: 1fr; }
       .cta-banner { text-align: center; justify-content: center; }
+      .back-to-top { right: 5rem; bottom: 1.2rem; }
+      .whatsapp-float { bottom: 1.2rem; right: 1.2rem; }
     }
 
     @media (max-width: 480px) {
       .stats-strip { grid-template-columns: repeat(2, 1fr); }
       .hero-actions { flex-direction: column; }
-      .btn-primary, .btn-outline { text-align: center; }
+      .btn-primary, .btn-outline { text-align: center; width: 100%; }
+      .stat-number { font-size: 2.2rem; }
     }
   </style>
+
+  <!-- Schema.org LocalBusiness -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "SteelRidge Roofing",
+    "description": "Nairobi's trusted roofing experts. New installations, repairs, waterproofing & more.",
+    "url": "https://steelridgeroofing.co.ke",
+    "telephone": "+254712345678",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Nairobi",
+      "addressRegion": "Nairobi County",
+      "addressCountry": "KE"
+    },
+    "areaServed": ["Nairobi", "Kiambu", "Kasarani", "Ruiru", "Westlands", "Karen", "Embakasi"],
+    "priceRange": "$$",
+    "openingHours": "Mo-Sa 07:00-18:00",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "500"
+    }
+  }
+  </script>
 </head>
 <body>
 
+  <!-- Skip Link -->
+  <a href="#main-content" class="skip-link">Skip to content</a>
+
   <!-- NAV -->
-  <nav>
-    <div class="nav-logo">Steel<span>Ridge</span> Roofing</div>
+  <nav id="navbar">
+    <a href="#" class="nav-logo">Steel<span>Ridge</span> Roofing</a>
     <ul class="nav-links">
-      <li><a href="#services">Services</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#about">Why Us</a></li>
+      <li><a href="#services" class="nav-link">Services</a></li>
+      <li><a href="#projects" class="nav-link">Projects</a></li>
+      <li><a href="#about" class="nav-link">Why Us</a></li>
+      <li><a href="#testimonials" class="nav-link">Reviews</a></li>
       <li><a href="#contact" class="nav-cta">Get a Quote</a></li>
     </ul>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </nav>
 
+  <!-- MOBILE MENU -->
+  <div class="mobile-overlay" id="mobileOverlay"></div>
+  <div class="mobile-menu" id="mobileMenu" role="navigation" aria-label="Mobile navigation">
+    <a href="#services" class="mobile-link">Services</a>
+    <a href="#projects" class="mobile-link">Projects</a>
+    <a href="#about" class="mobile-link">Why Us</a>
+    <a href="#testimonials" class="mobile-link">Reviews</a>
+    <a href="#contact" class="mobile-link mobile-cta">Get a Quote</a>
+  </div>
+
   <!-- HERO -->
-  <section class="hero">
-    <p class="hero-eyebrow">Nairobi's Trusted Roofing Specialists</p>
-    <h1>Roofs Built to <em>Last</em> a Lifetime</h1>
-    <p>From mabati installation to flat roof waterproofing — SteelRidge delivers quality roofing across Nairobi, Kiambu, and beyond. Licensed. Insured. On time.</p>
-    <div class="hero-actions">
-      <a href="#contact" class="btn-primary">Get a Free Quote</a>
-      <a href="#projects" class="btn-outline">See Our Work</a>
-    </div>
-  </section>
+  <main id="main-content">
+    <section class="hero">
+      <p class="hero-eyebrow">Nairobi's Trusted Roofing Specialists</p>
+      <h1>Roofs Built to <em>Last</em> a Lifetime</h1>
+      <p>From mabati installation to flat roof waterproofing — SteelRidge delivers quality roofing across Nairobi, Kiambu, and beyond. Licensed. Insured. On time.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">Get a Free Quote</a>
+        <a href="#projects" class="btn-outline">See Our Work</a>
+      </div>
+    </section>
 
-  <!-- STATS -->
-  <div class="stats-strip">
-    <div class="stat">
-      <div class="stat-number">500<span>+</span></div>
-      <div class="stat-label">Roofs Completed</div>
+    <!-- STATS -->
+    <div class="stats-strip">
+      <div class="stat fade-in">
+        <div class="stat-number" data-target="500">0<span>+</span></div>
+        <div class="stat-label">Roofs Completed</div>
+      </div>
+      <div class="stat fade-in">
+        <div class="stat-number" data-target="12">0<span>yrs</span></div>
+        <div class="stat-label">Experience</div>
+      </div>
+      <div class="stat fade-in">
+        <div class="stat-number" data-target="98">0<span>%</span></div>
+        <div class="stat-label">Client Satisfaction</div>
+      </div>
+      <div class="stat fade-in">
+        <div class="stat-number" data-target="24">0<span>hr</span></div>
+        <div class="stat-label">Response Time</div>
+      </div>
     </div>
-    <div class="stat">
-      <div class="stat-number">12<span>yrs</span></div>
-      <div class="stat-label">Experience</div>
-    </div>
-    <div class="stat">
-      <div class="stat-number">98<span>%</span></div>
-      <div class="stat-label">Client Satisfaction</div>
-    </div>
-    <div class="stat">
-      <div class="stat-number">24<span>hr</span></div>
-      <div class="stat-label">Response Time</div>
-    </div>
-  </div>
 
-  <!-- SERVICES -->
-  <section class="services" id="services">
-    <p class="section-eyebrow">What We Do</p>
-    <h2 class="section-title">Our Roofing Services</h2>
-    <p class="section-sub">We handle every roofing job from new installations to emergency repairs — with skilled crews and quality materials every time.</p>
-    <div class="services-grid">
-      <div class="service-card">
-        <div class="service-icon">🏗️</div>
-        <div class="service-title">New Roof Installation</div>
-        <p class="service-desc">Full installation of mabati, clay tiles, and box profile roofing for residential and commercial buildings.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">🔧</div>
-        <div class="service-title">Roof Repairs</div>
-        <p class="service-desc">Fast, lasting fixes for leaks, loose sheets, rusted sections, and storm damage. We come to you within 24 hours.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">💧</div>
-        <div class="service-title">Waterproofing</div>
-        <p class="service-desc">Flat roof waterproofing solutions that keep your property completely dry through Nairobi's heaviest rains.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">🏠</div>
-        <div class="service-title">Roof Replacement</div>
-        <p class="service-desc">Full tear-off and replacement when repairs are no longer enough. Honest assessment, no upselling.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">📐</div>
-        <div class="service-title">Guttering & Drainage</div>
-        <p class="service-desc">Proper gutter installation and downpipe routing to protect your walls and foundation from water damage.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">🔍</div>
-        <div class="service-title">Roof Inspection</div>
-        <p class="service-desc">Detailed inspection reports with photos, identifying issues before they become expensive problems.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- WHY US -->
-  <section class="why" id="about">
-    <p class="section-eyebrow">Why SteelRidge</p>
-    <h2 class="section-title">Roofing Done Right</h2>
-    <p class="section-sub">We've been on Nairobi rooftops for over 12 years. Here's what makes clients come back — and refer their neighbours.</p>
-    <div class="why-grid">
-      <div class="why-item">
-        <h3>Licensed & Insured</h3>
-        <p>Full NCA registration and liability cover. You're protected on every job, no exceptions.</p>
-      </div>
-      <div class="why-item">
-        <h3>Quality Materials Only</h3>
-        <p>We source from verified suppliers. No substandard mabati or shortcuts that cost you later.</p>
-      </div>
-      <div class="why-item">
-        <h3>Transparent Pricing</h3>
-        <p>Detailed written quotes before any work starts. No surprise charges when the job is done.</p>
-      </div>
-      <div class="why-item">
-        <h3>On-Time Delivery</h3>
-        <p>We set a schedule and we keep it. Your project doesn't get abandoned for another job.</p>
-      </div>
-      <div class="why-item">
-        <h3>5-Year Workmanship Warranty</h3>
-        <p>We stand behind our work. Any defect in our installation — we fix it, free of charge.</p>
-      </div>
-      <div class="why-item">
-        <h3>Local Crew, Local Knowledge</h3>
-        <p>Our team knows Nairobi's weather patterns and builds roofs that handle the long rains every time.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- PROJECTS -->
-  <section class="projects" id="projects">
-    <p class="section-eyebrow">Our Work</p>
-    <h2 class="section-title">Recent Projects</h2>
-    <p class="section-sub">A sample of roofing jobs completed across Nairobi and surrounding counties.</p>
-    <div class="projects-grid">
-      <div class="project-card">
-        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="Residential roofing Kiambu"/>
-        <div class="project-overlay">
-          <div class="project-tag">Residential</div>
-          <div class="project-name">Kiambu Family Home</div>
+    <!-- SERVICES -->
+    <section class="services" id="services">
+      <p class="section-eyebrow">What We Do</p>
+      <h2 class="section-title">Our Roofing Services</h2>
+      <p class="section-sub">We handle every roofing job from new installations to emergency repairs — with skilled crews and quality materials every time.</p>
+      <div class="services-grid">
+        <div class="service-card fade-in">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 21v-6h6v6"/></svg>
+          </div>
+          <div class="service-title">New Roof Installation</div>
+          <p class="service-desc">Full installation of mabati, clay tiles, and box profile roofing for residential and commercial buildings.</p>
+        </div>
+        <div class="service-card fade-in">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+          </div>
+          <div class="service-title">Roof Repairs</div>
+          <p class="service-desc">Fast, lasting fixes for leaks, loose sheets, rusted sections, and storm damage. We come to you within 24 hours.</p>
+        </div>
+        <div class="service-card fade-in">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+          </div>
+          <div class="service-title">Waterproofing</div>
+          <p class="service-desc">Flat roof waterproofing solutions that keep your property completely dry through Nairobi's heaviest rains.</p>
+        </div>
+        <div class="service-card fade-in">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          <div class="service-title">Roof Replacement</div>
+          <p class="service-desc">Full tear-off and replacement when repairs are no longer enough. Honest assessment, no upselling.</p>
+        </div>
+        <div class="service-card fade-in">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M4 20h16"/><path d="M6 16h6v4H6z"/><path d="M8 12v4"/><path d="M12 12v4"/><path d="M6 12l3-6 3 6"/><path d="M14 8h4l-2 4v4"/></svg>
+          </div>
+          <div class="service-title">Guttering & Drainage</div>
+          <p class="service-desc">Proper gutter installation and downpipe routing to protect your walls and foundation from water damage.</p>
+        </div>
+        <div class="service-card fade-in">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </div>
+          <div class="service-title">Roof Inspection</div>
+          <p class="service-desc">Detailed inspection reports with photos, identifying issues before they become expensive problems.</p>
         </div>
       </div>
-      <div class="project-card">
-        <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80" alt="Commercial roofing Nairobi"/>
-        <div class="project-overlay">
-          <div class="project-tag">Commercial</div>
-          <div class="project-name">Industrial Unit, Embakasi</div>
+    </section>
+
+    <!-- WHY US -->
+    <section class="why" id="about">
+      <p class="section-eyebrow">Why SteelRidge</p>
+      <h2 class="section-title">Roofing Done Right</h2>
+      <p class="section-sub">We've been on Nairobi rooftops for over 12 years. Here's what makes clients come back — and refer their neighbours.</p>
+      <div class="why-grid">
+        <div class="why-item fade-in">
+          <h3>Licensed & Insured</h3>
+          <p>Full NCA registration and liability cover. You're protected on every job, no exceptions.</p>
+        </div>
+        <div class="why-item fade-in">
+          <h3>Quality Materials Only</h3>
+          <p>We source from verified suppliers. No substandard mabati or shortcuts that cost you later.</p>
+        </div>
+        <div class="why-item fade-in">
+          <h3>Transparent Pricing</h3>
+          <p>Detailed written quotes before any work starts. No surprise charges when the job is done.</p>
+        </div>
+        <div class="why-item fade-in">
+          <h3>On-Time Delivery</h3>
+          <p>We set a schedule and we keep it. Your project doesn't get abandoned for another job.</p>
+        </div>
+        <div class="why-item fade-in">
+          <h3>5-Year Workmanship Warranty</h3>
+          <p>We stand behind our work. Any defect in our installation — we fix it, free of charge.</p>
+        </div>
+        <div class="why-item fade-in">
+          <h3>Local Crew, Local Knowledge</h3>
+          <p>Our team knows Nairobi's weather patterns and builds roofs that handle the long rains every time.</p>
         </div>
       </div>
-      <div class="project-card">
-        <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600&q=80" alt="Waterproofing flat roof"/>
-        <div class="project-overlay">
-          <div class="project-tag">Waterproofing</div>
-          <div class="project-name">Apartment Block, Westlands</div>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- TESTIMONIALS -->
-  <section class="testimonials">
-    <p class="section-eyebrow">Client Reviews</p>
-    <h2 class="section-title">What Our Clients Say</h2>
-    <p class="section-sub">Real feedback from homeowners and developers across Nairobi.</p>
-    <div class="testi-grid">
-      <div class="testi-card">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-text">"SteelRidge replaced our entire roof in three days. Clean work, professional crew, and no mess left behind. The quote was exactly what we paid."</p>
-        <div class="testi-author">Margaret W.</div>
-        <div class="testi-location">Homeowner, Ruiru</div>
-      </div>
-      <div class="testi-card">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-text">"We had a serious leak damaging our warehouse. They responded within hours and had it sealed the same day. Saved us a lot of stock."</p>
-        <div class="testi-author">James K.</div>
-        <div class="testi-location">Warehouse Owner, Athi River</div>
-      </div>
-      <div class="testi-card">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-text">"Very honest people. They inspected my roof and told me it only needed minor repairs — not a full replacement like another contractor suggested."</p>
-        <div class="testi-author">Grace N.</div>
-        <div class="testi-location">Property Owner, Karen</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA BANNER -->
-  <div class="cta-banner">
-    <h2>Ready for a Roof You Can Trust?</h2>
-    <a href="#contact" class="btn-white">Get Your Free Quote Today</a>
-  </div>
-
-  <!-- CONTACT -->
-  <section class="contact" id="contact">
-    <p class="section-eyebrow">Get In Touch</p>
-    <h2 class="section-title">Request a Free Quote</h2>
-    <div class="contact-wrap">
-      <div class="contact-info">
-        <h3>Contact Details</h3>
-        <div class="contact-item">
-          <div class="contact-item-icon">📞</div>
-          <div class="contact-item-text">
-            <strong>Phone / WhatsApp</strong>
-            <span>0712 345 678</span>
+    <!-- PROJECTS -->
+    <section class="projects" id="projects">
+      <p class="section-eyebrow">Our Work</p>
+      <h2 class="section-title">Recent Projects</h2>
+      <p class="section-sub">A sample of roofing jobs completed across Nairobi and surrounding counties.</p>
+      <div class="projects-grid">
+        <div class="project-card fade-in">
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="Residential roofing project in Kiambu - new mabati installation" loading="lazy" width="600" height="450"/>
+          <div class="project-overlay">
+            <div class="project-tag">Residential</div>
+            <div class="project-name">Kiambu Family Home</div>
           </div>
         </div>
-        <div class="contact-item">
-          <div class="contact-item-icon">📍</div>
-          <div class="contact-item-text">
-            <strong>Location</strong>
-            <span>Industrial Area, Nairobi<br/>We serve all Nairobi counties</span>
+        <div class="project-card fade-in">
+          <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80" alt="Commercial roofing project in Embakasi Nairobi" loading="lazy" width="600" height="450"/>
+          <div class="project-overlay">
+            <div class="project-tag">Commercial</div>
+            <div class="project-name">Industrial Unit, Embakasi</div>
           </div>
         </div>
-        <div class="contact-item">
-          <div class="contact-item-icon">🕐</div>
-          <div class="contact-item-text">
-            <strong>Working Hours</strong>
-            <span>Mon – Sat: 7:00 AM – 6:00 PM</span>
-          </div>
-        </div>
-        <div class="contact-item">
-          <div class="contact-item-icon">✉️</div>
-          <div class="contact-item-text">
-            <strong>Email</strong>
-            <span>info@steelridgeroofing.co.ke</span>
+        <div class="project-card fade-in">
+          <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600&q=80" alt="Flat roof waterproofing project in Westlands Nairobi" loading="lazy" width="600" height="450"/>
+          <div class="project-overlay">
+            <div class="project-tag">Waterproofing</div>
+            <div class="project-name">Apartment Block, Westlands</div>
           </div>
         </div>
       </div>
-      <div class="contact-form">
-        <div class="form-row">
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="testimonials" id="testimonials">
+      <p class="section-eyebrow">Client Reviews</p>
+      <h2 class="section-title">What Our Clients Say</h2>
+      <p class="section-sub">Real feedback from homeowners and developers across Nairobi.</p>
+      <div class="testi-grid">
+        <div class="testi-card fade-in">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"SteelRidge replaced our entire roof in three days. Clean work, professional crew, and no mess left behind. The quote was exactly what we paid."</p>
+          <div class="testi-author">Margaret W.</div>
+          <div class="testi-location">Homeowner, Ruiru</div>
+        </div>
+        <div class="testi-card fade-in">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"We had a serious leak damaging our warehouse. They responded within hours and had it sealed the same day. Saved us a lot of stock."</p>
+          <div class="testi-author">James K.</div>
+          <div class="testi-location">Warehouse Owner, Athi River</div>
+        </div>
+        <div class="testi-card fade-in">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"Very honest people. They inspected my roof and told me it only needed minor repairs — not a full replacement like another contractor suggested."</p>
+          <div class="testi-author">Grace N.</div>
+          <div class="testi-location">Property Owner, Karen</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA BANNER -->
+    <div class="cta-banner">
+      <h2>Ready for a Roof You Can Trust?</h2>
+      <a href="#contact" class="btn-white">Get Your Free Quote Today</a>
+    </div>
+
+    <!-- CONTACT -->
+    <section class="contact" id="contact">
+      <p class="section-eyebrow">Get In Touch</p>
+      <h2 class="section-title">Request a Free Quote</h2>
+      <div class="contact-wrap">
+        <div class="contact-info">
+          <h3>Contact Details</h3>
+          <div class="contact-item">
+            <div class="contact-item-icon">
+              <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <div class="contact-item-text">
+              <strong>Phone / WhatsApp</strong>
+              <span>0712 345 678</span>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">
+              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div class="contact-item-text">
+              <strong>Location</strong>
+              <span>Industrial Area, Nairobi<br/>We serve all Nairobi counties</span>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div class="contact-item-text">
+              <strong>Working Hours</strong>
+              <span>Mon – Sat: 7:00 AM – 6:00 PM</span>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">
+              <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div class="contact-item-text">
+              <strong>Email</strong>
+              <span>info@steelridgeroofing.co.ke</span>
+            </div>
+          </div>
+        </div>
+        <form class="contact-form" id="quoteForm" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Your Name *</label>
+              <input type="text" id="name" placeholder="John Kamau" required/>
+              <span class="error-msg">Please enter your name</span>
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone Number *</label>
+              <input type="tel" id="phone" placeholder="0712 000 000" required/>
+              <span class="error-msg">Please enter your phone number</span>
+            </div>
+          </div>
           <div class="form-group">
-            <label>Your Name</label>
-            <input type="text" placeholder="John Kamau"/>
+            <label for="service">Service Needed *</label>
+            <select id="service" required>
+              <option value="">Select a service...</option>
+              <option>New Roof Installation</option>
+              <option>Roof Repair</option>
+              <option>Waterproofing</option>
+              <option>Roof Replacement</option>
+              <option>Guttering & Drainage</option>
+              <option>Roof Inspection</option>
+            </select>
+            <span class="error-msg">Please select a service</span>
           </div>
           <div class="form-group">
-            <label>Phone Number</label>
-            <input type="tel" placeholder="0712 000 000"/>
+            <label for="location">Location / Area</label>
+            <input type="text" id="location" placeholder="e.g. Kasarani, Thika Road..."/>
           </div>
-        </div>
-        <div class="form-group">
-          <label>Service Needed</label>
-          <select>
-            <option>Select a service...</option>
-            <option>New Roof Installation</option>
-            <option>Roof Repair</option>
-            <option>Waterproofing</option>
-            <option>Roof Replacement</option>
-            <option>Guttering & Drainage</option>
-            <option>Roof Inspection</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Location / Area</label>
-          <input type="text" placeholder="e.g. Kasarani, Thika Road..."/>
-        </div>
-        <div class="form-group">
-          <label>Tell Us More</label>
-          <textarea placeholder="Brief description of your roofing needs..."></textarea>
-        </div>
-        <button class="btn-primary" style="width:100%; padding: 1rem;">Send Quote Request</button>
+          <div class="form-group">
+            <label for="message">Tell Us More</label>
+            <textarea id="message" placeholder="Brief description of your roofing needs..."></textarea>
+          </div>
+          <button type="submit" class="btn-primary form-submit" id="submitBtn">Send Quote Request</button>
+        </form>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
   <!-- FOOTER -->
   <footer>
@@ -872,13 +1214,250 @@
       </ul>
     </div>
     <div class="footer-bottom">
-      <p class="footer-copy">© 2026 SteelRidge Roofing. All rights reserved. Nairobi, Kenya.</p>
+      <p class="footer-copy">&copy; <span id="year"></span> SteelRidge Roofing. All rights reserved. Nairobi, Kenya.</p>
       <p class="footer-copy">NCA Registered | Fully Insured</p>
     </div>
   </footer>
 
   <!-- WHATSAPP FLOAT -->
-  <a href="https://wa.me/254712345678" class="whatsapp-float" target="_blank" title="Chat on WhatsApp">💬</a>
+  <a href="#" class="whatsapp-float" id="waFloat" target="_blank" rel="noopener" title="Chat on WhatsApp" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+  </a>
+
+  <!-- BACK TO TOP -->
+  <a href="#" class="back-to-top" id="backToTop" aria-label="Back to top">
+    <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+  </a>
+
+  <script>
+    // ══════════════════════════════════════
+    // CONFIGURATION — EDIT THESE ONCE
+    // ══════════════════════════════════════
+    const CONFIG = {
+      whatsapp: '254712345678',       // WhatsApp number (country code + number, no +)
+      email: 'info@steelridgeroofing.co.ke',
+      analyticsId: 'G-XXXXXXXXXX',     // Google Analytics ID — replace when ready
+    };
+
+    // ══════════════════════════════════════
+    // MOBILE MENU
+    // ══════════════════════════════════════
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileOverlay = document.getElementById('mobileOverlay');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+    const body = document.body;
+
+    function toggleMenu() {
+      const isOpen = hamburger.classList.toggle('active');
+      mobileMenu.classList.toggle('active');
+      mobileOverlay.classList.toggle('active');
+      body.classList.toggle('menu-open');
+      hamburger.setAttribute('aria-expanded', isOpen);
+    }
+
+    function closeMenu() {
+      hamburger.classList.remove('active');
+      mobileMenu.classList.remove('active');
+      mobileOverlay.classList.remove('active');
+      body.classList.remove('menu-open');
+      hamburger.setAttribute('aria-expanded', 'false');
+    }
+
+    hamburger.addEventListener('click', toggleMenu);
+    mobileOverlay.addEventListener('click', closeMenu);
+    mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+    // ══════════════════════════════════════
+    // NAVBAR SCROLL EFFECT
+    // ══════════════════════════════════════
+    const navbar = document.getElementById('navbar');
+
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 50);
+    }, { passive: true });
+
+    // ══════════════════════════════════════
+    // ACTIVE NAV LINK ON SCROLL
+    // ══════════════════════════════════════
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          navLinks.forEach(link => {
+            link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+          });
+        }
+      });
+    }, { rootMargin: '-30% 0px -70% 0px' });
+
+    sections.forEach(section => sectionObserver.observe(section));
+
+    // ══════════════════════════════════════
+    // SCROLL ANIMATIONS
+    // ══════════════════════════════════════
+    const fadeEls = document.querySelectorAll('.fade-in');
+
+    const fadeObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          fadeObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+
+    fadeEls.forEach(el => fadeObserver.observe(el));
+
+    // ══════════════════════════════════════
+    // STATS COUNTER ANIMATION
+    // ══════════════════════════════════════
+    const statNumbers = document.querySelectorAll('.stat-number');
+    let statsCounted = false;
+
+    const statsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !statsCounted) {
+          statsCounted = true;
+          statNumbers.forEach(stat => {
+            const target = parseInt(stat.getAttribute('data-target'));
+            const suffix = stat.querySelector('span')?.textContent || '';
+            const duration = 2000;
+            const step = target / (duration / 16);
+            let current = 0;
+
+            const timer = setInterval(() => {
+              current += step;
+              if (current >= target) {
+                current = target;
+                clearInterval(timer);
+              }
+              stat.innerHTML = Math.floor(current) + '<span>' + suffix + '</span>';
+            }, 16);
+          });
+        }
+      });
+    }, { threshold: 0.5 });
+
+    const statsStrip = document.querySelector('.stats-strip');
+    if (statsStrip) statsObserver.observe(statsStrip);
+
+    // ══════════════════════════════════════
+    // BACK TO TOP BUTTON
+    // ══════════════════════════════════════
+    const backToTop = document.getElementById('backToTop');
+
+    window.addEventListener('scroll', () => {
+      backToTop.classList.toggle('visible', window.scrollY > 600);
+    }, { passive: true });
+
+    backToTop.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // ══════════════════════════════════════
+    // WHATSAPP FLOAT — SET CORRECT LINK
+    // ══════════════════════════════════════
+    const waFloat = document.getElementById('waFloat');
+    waFloat.href = `https://wa.me/${CONFIG.whatsapp}`;
+
+    // ══════════════════════════════════════
+    // FORM VALIDATION + WHATSAPP REDIRECT
+    // ══════════════════════════════════════
+    const quoteForm = document.getElementById('quoteForm');
+    const submitBtn = document.getElementById('submitBtn');
+
+    function showError(input) {
+      input.classList.add('error');
+      const errMsg = input.parentElement.querySelector('.error-msg');
+      if (errMsg) errMsg.classList.add('show');
+    }
+
+    function clearError(input) {
+      input.classList.remove('error');
+      const errMsg = input.parentElement.querySelector('.error-msg');
+      if (errMsg) errMsg.classList.remove('show');
+    }
+
+    // Clear errors on input
+    quoteForm.querySelectorAll('input, select, textarea').forEach(el => {
+      el.addEventListener('input', () => clearError(el));
+      el.addEventListener('change', () => clearError(el));
+    });
+
+    quoteForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById('name');
+      const phone = document.getElementById('phone');
+      const service = document.getElementById('service');
+      const location = document.getElementById('location');
+      const message = document.getElementById('message');
+
+      let valid = true;
+
+      // Validate required fields
+      [name, phone, service].forEach(field => {
+        if (!field.value.trim()) {
+          showError(field);
+          valid = false;
+        } else {
+          clearError(field);
+        }
+      });
+
+      if (!valid) return;
+
+      // Change button state
+      const originalText = submitBtn.textContent;
+      submitBtn.textContent = 'Opening WhatsApp...';
+      submitBtn.disabled = true;
+
+      // Build WhatsApp message
+      const waText = encodeURIComponent(
+        `Hi SteelRidge! I'd like a quote.\n\n` +
+        `👤 Name: ${name.value}\n` +
+        `📞 Phone: ${phone.value}\n` +
+        `🔧 Service: ${service.value}\n` +
+        `📍 Location: ${location.value || 'Not specified'}\n` +
+        `💬 Details: ${message.value || 'No additional details'}`
+      );
+
+      // Open WhatsApp
+      setTimeout(() => {
+        window.open(`https://wa.me/${CONFIG.whatsapp}?text=${waText}`, '_blank');
+        submitBtn.textContent = '✓ Sent to WhatsApp';
+        submitBtn.style.background = 'var(--success)';
+
+        // Reset form after delay
+        setTimeout(() => {
+          quoteForm.reset();
+          submitBtn.textContent = originalText;
+          submitBtn.style.background = '';
+          submitBtn.disabled = false;
+        }, 3000);
+      }, 500);
+    });
+
+    // ══════════════════════════════════════
+    // DYNAMIC YEAR
+    // ══════════════════════════════════════
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // ══════════════════════════════════════
+    // ANALYTICS PLACEHOLDER
+    // ══════════════════════════════════════
+    // Uncomment and replace G-XXXXXXXXXX when ready:
+    //
+    // window.dataLayer = window.dataLayer || [];
+    // function gtag(){dataLayer.push(arguments);}
+    // gtag('js', new Date());
+    // gtag('config', CONFIG.analyticsId);
+  </script>
 
 </body>
 </html>
